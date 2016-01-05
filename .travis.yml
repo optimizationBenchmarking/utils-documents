@@ -35,4 +35,5 @@ before_install:
   
 # prevent Maven from running
 install:
-  - echo "Nothing."
+  - sudo apt-get -q -y -f update
+  - sudo apt-get -q -y -f install texlive

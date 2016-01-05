@@ -24,6 +24,7 @@ before_install:
   - shippable_retry wget "https://raw.githubusercontent.com/optimizationBenchmarking/utils-build/master/antWebInstallerLinux.sh"
   - chmod 755 antWebInstallerLinux.sh
   - shippable_retry sudo ./antWebInstallerLinux.sh --purgeAnt=false
+  - shippable_retry sudo apt-get -q -y -f install texlive
   
 # install override
 install:

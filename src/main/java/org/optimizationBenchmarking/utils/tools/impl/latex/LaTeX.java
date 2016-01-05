@@ -1,7 +1,9 @@
 package org.optimizationBenchmarking.utils.tools.impl.latex;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import org.optimizationBenchmarking.utils.collections.lists.ArraySetView;
 import org.optimizationBenchmarking.utils.graphics.graphic.impl.EGraphicFormat;
@@ -309,22 +311,29 @@ public class LaTeX extends FileProducerTool
     static final ArraySetView<EGraphicFormat> ALL;
 
     static {
-      final ArrayList<EGraphicFormat> list;
-      final int size;
+      final LinkedHashSet<EGraphicFormat> list;
+      final EGraphicFormat[] formats;
+      int size;
 
-      list = new ArrayList<>(EGraphicFormat.INSTANCES.size());
-      main: for (final EGraphicFormat format : EGraphicFormat.INSTANCES) {
-        for (final _LaTeXToolChainComponentDesc desc : new _AllEngines()) {
+      size = EGraphicFormat.INSTANCES.size();
+      list = new LinkedHashSet<>(size);
+      main: for (final _LaTeXToolChainComponentDesc desc : new _AllEngines()) {
+        for (final EGraphicFormat format : EGraphicFormat.INSTANCES) {
           if (desc._supports(format)) {
-            list.add(format);
-            continue main;
+            if (list.add(format)) {
+              if ((--size) <= 0) {
+                break main;
+              }
+            }
           }
         }
       }
 
       size = list.size();
       if (size > 0) {
-        ALL = new ArraySetView<>(list.toArray(new EGraphicFormat[size]));
+        formats = list.toArray(new EGraphicFormat[size]);
+        Arrays.sort(formats);
+        ALL = new ArraySetView<>(formats);
       } else {
         ALL = ((ArraySetView) (ArraySetView.EMPTY_SET_VIEW));
       }

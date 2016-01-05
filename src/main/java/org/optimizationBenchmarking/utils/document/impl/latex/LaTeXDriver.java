@@ -724,7 +724,7 @@ public final class LaTeXDriver extends DocumentDriver {
     final IGraphicFormat format;
 
     format = driver.getFileType();
-    if (LaTeX.getAllSupportedGraphicFormats().contains(driver)) {
+    if (LaTeX.getAllSupportedGraphicFormats().contains(format)) {
       return;
     }
 
