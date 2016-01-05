@@ -1,6 +1,6 @@
 <project basedir="." default="build">
 	<description>
-	Build the utils-charts project, the project holding the
+	Build the utils-base project, the project holding the
 	document generating utility classes, includings its
 	dependencies of group "org.optimizationBenchmarking".
 	</description>
@@ -13,6 +13,7 @@
 		<sequential>
 			<buildWithDependencies githubProject="utils-documents">
 				<dependencies>
+					<dependency githubProject="utils-base" />
 					<dependency githubProject="utils-charts" />
 					<dependency githubProject="utils-graphics" />
 				</dependencies>

@@ -1,0 +1,40 @@
+%
+% The listings package is responsible both for in-line listings
+% as well as floating listings.
+% http://www.ctan.org/pkg/listings
+%
+\RequirePackage{listings}%
+%
+\lstset{emptylines=1}%
+\lstset{basicstyle=\small\ttfamily}%
+\lstset{commentstyle=\normalfont}%
+\lstset{tabsize=2}%
+\lstset{numbers=left}%
+\lstset{numberstyle=\tiny}%
+\lstset{breaklines=true}%
+\lstset{columns=flexible}%
+%
+\definecolor{@listings@BackgroundColor}{HTML}{DCDCFF}%
+\definecolor{@listings@ShadowColor}{HTML}{C0C0E0}%
+\definecolor{@listings@KeywordColor}{HTML}{0000E0}%
+%
+\lstset{fillcolor=\color{@listings@BackgroundColor}}%
+\lstset{backgroundcolor=\color{@listings@BackgroundColor}}%
+\lstset{rulesepcolor=\color{@listings@ShadowColor}}%
+\lstset{keywordstyle=\color{@listings@KeywordColor}\bfseries}%
+\lstset{frame=shadowbox}%
+%
+\lstdefinelanguage{listingsBasicLanguage}{%
+morekeywords={%
+boolean,break,byte,case,char,%
+const,continue,default,do,double,else,false,%
+float,for,goto,if,int,label,long,null,return,%
+short,switch,to,downto,true,until,void,while},%
+morecomment=[l]//,%
+morecomment=[s]{/*}{*/},%
+morestring=[b]",%
+morestring=[b]',%
+}[keywords,comments,strings]%
+%
+\lstset{language=listingsBasicLanguage}%
+%

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.optimizationBenchmarking.org/formats/documentTemplate/documentTemplate.1.0.xsd"
+	targetNamespace="http://www.optimizationBenchmarking.org/formats/documentTemplate/documentTemplate.1.0.xsd"
+	xmlns:bib="http://www.optimizationBenchmarking.org/formats/bibliography/bibliography.1.0.xsd"
+	elementFormDefault="qualified">
+
+	<annotation>
+		<documentation>The XML Schema for the document templates, version 1.0.
+		</documentation>
+	</annotation>
+
+	<import
+		namespace="http://www.optimizationBenchmarking.org/formats/bibliography/bibliography.1.0.xsd"
+		schemaLocation="http://www.optimizationBenchmarking.org/formats/bibliography/bibliography.1.0.xsd" />
+
+	<attribute name="textCase">
+		<simpleType>
+			<restriction base="token">
+				<enumeration value="atSentenceStart" />
+				<enumeration value="atTitleStart" />
+				<enumeration value="inSentence" />
+				<enumeration value="inTitle" />
+			</restriction>
+		</simpleType>
+	</attribute>
+
+	<attribute name="sequenceMode">
+		<simpleType>
+			<restriction base="token">
+				<enumeration value="comma" />
+				<enumeration value="and" />
+				<enumeration value="or" />
+				<enumeration value="eitherOr" />
+				<enumeration value="neitherNor" />
+				<enumeration value="fromTo" />
+				<enumeration value="etAl" />
+			</restriction>
+		</simpleType>
+	</attribute>
+
+	<attributeGroup name="formatAttrs">
+		<attribute name="formatProperty" type="token" use="optional" />
+		<attribute name="formatInstance" type="token" use="optional" />
+		<attribute name="formatPattern" type="token" use="optional" />
+		<attribute ref="tns:textCase" use="optional" />
+	</attributeGroup>
+
+
+
+	<attribute name="label" type="token" />
+
+	<complexType name="text" mixed="true">
+		<choice>
+
+			<element name="value" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="of" type="token" use="required" />
+					<attributeGroup ref="tns:formatAttrs" />
+				</complexType>
+			</element>
+
+			<element name="call" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="f" type="token" use="required" />
+				</complexType>
+			</element>
+
+			<element name="nbsp" minOccurs="0" maxOccurs="unbounded">
+				<complexType />
+			</element>
+
+			<element name="byte" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="byte">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+
+			<element name="short" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="short">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+
+			<element name="int" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="int">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+
+			<element name="long" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="long">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+
+			<element name="float" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="float">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+
+			<element name="double" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="double">
+							<attributeGroup ref="tns:formatAttrs" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</choice>
+	</complexType>
+
+
+
+	<complexType name="plainText" mixed="true">
+		<complexContent>
+			<extension base="tns:text">
+				<choice>
+
+					<element name="br" minOccurs="0" maxOccurs="unbounded">
+						<complexType />
+					</element>
+
+
+					<element name="quote" type="tns:plainText" minOccurs="0"
+						maxOccurs="unbounded" />
+
+					<element name="brace" type="tns:plainText" minOccurs="0"
+						maxOccurs="unbounded" />
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<element name="ref">
+		<complexType>
+			<sequence>
+				<element name="label" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+			<attribute ref="tns:textCase" use="optional" />
+			<attribute ref="tns:sequenceMode" use="optional" />
+		</complexType>
+	</element>
+
+	<element name="sub" type="tns:plainText" />
+
+	<element name="sup" type="tns:plainText" />
+
+	<complexType name="complexText" mixed="true">
+		<complexContent>
+			<extension base="tns:plainText">
+				<choice>
+
+					<element name="code" type="tns:plainText" minOccurs="0"
+						maxOccurs="unbounded" />
+
+					<element name="em" type="tns:plainText" minOccurs="0"
+						maxOccurs="unbounded" />
+
+					<element ref="tns:sub" minOccurs="0" maxOccurs="unbounded" />
+
+					<element ref="tns:sup" minOccurs="0" maxOccurs="unbounded" />
+
+					<element name="cite" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="bib:bibliographyType">
+									<attribute ref="tns:textCase" use="optional" />
+									<attribute ref="tns:sequenceMode" use="optional" />
+									<attribute name="mode" use="optional">
+										<simpleType>
+											<restriction base="token">
+												<enumeration value="id" />
+												<enumeration value="authorsAndID" />
+												<enumeration value="authorsAndYear" />
+												<enumeration value="authors" />
+												<enumeration value="title" />
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+
+
+					<element name="inlineMath" type="tns:math" minOccurs="0"
+						maxOccurs="unbounded" />
+
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="structuredText" mixed="true">
+		<complexContent>
+			<extension base="tns:complexText">
+				<choice>
+
+					<element name="ol">
+						<complexType>
+							<sequence>
+								<element name="li" type="tns:structuredText" minOccurs="1"
+									maxOccurs="unbounded" />
+							</sequence>
+						</complexType>
+					</element>
+
+					<element name="ul">
+						<complexType>
+							<sequence>
+								<element name="li" type="tns:structuredText" minOccurs="1"
+									maxOccurs="unbounded" />
+							</sequence>
+						</complexType>
+					</element>
+
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="math" mixed="false">
+		<choice>
+			<element name="text" type="tns:complexText" minOccurs="0"
+				maxOccurs="unbounded" />
+
+			<element name="name" minOccurs="0" maxOccurs="unbounded">
+				<complexType mixed="true">
+					<complexContent>
+						<extension base="tns:text">
+							<choice>
+								<element ref="tns:sub" minOccurs="0" maxOccurs="unbounded" />
+								<element ref="tns:sup" minOccurs="0" maxOccurs="unbounded" />
+							</choice>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+
+			<element name="number" type="tns:text" minOccurs="0"
+				maxOccurs="unbounded" />
+
+			<element name="add" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="abs" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+
+			<element name="cmp" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="tns:math">
+							<attribute name="op" use="required">
+								<simpleType>
+									<restriction base="token">
+										<enumeration value="lll" />
+										<enumeration value="ll" />
+										<enumeration value="l" />
+										<enumeration value="le" />
+										<enumeration value="ge" />
+										<enumeration value="g" />
+										<enumeration value="gg" />
+										<enumeration value="ggg" />
+										<enumeration value="e" />
+										<enumeration value="equiv" />
+										<enumeration value="approx" />
+										<enumeration value="approxe" />
+										<enumeration value="prop" />
+										<enumeration value="ne" />
+										<enumeration value="nequiv" />
+										<enumeration value="napprox" />
+										<enumeration value="napproxe" />
+										<enumeration value="in" />
+										<enumeration value="nin" />
+										<enumeration value="subset" />
+										<enumeration value="nsubset" />
+										<enumeration value="subsete" />
+										<enumeration value="nsubsete" />
+										<enumeration value="def" />
+										<enumeration value="estim" />
+										<enumeration value="pred" />
+										<enumeration value="npred" />
+										<enumeration value="prede" />
+										<enumeration value="npred" />
+										<enumeration value="succ" />
+										<enumeration value="nsucc" />
+										<enumeration value="succe" />
+										<enumeration value="nsucce" />
+										<enumeration value="sim" />
+										<enumeration value="nsim" />
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+
+
+			<element name="cos" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="div" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="divInline" type="tns:math" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="facorial" type="tns:math" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="brace" type="tns:math" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="ld" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="lg" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="ln" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="log" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="mod" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="mul" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="negate" type="tns:math" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="pow" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="root" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="sin" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="sqrt" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="subt" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+			<element name="tan" type="tns:math" minOccurs="0" maxOccurs="unbounded" />
+		</choice>
+	</complexType>
+
+
+	<element name="section">
+		<complexType>
+			<sequence>
+				<element name="title" type="tns:complexText" minOccurs="1"
+					maxOccurs="1" />
+
+				<element name="body" minOccurs="1" maxOccurs="1">
+					<complexType mixed="true">
+						<complexContent>
+							<extension base="tns:structuredText">
+								<choice>
+									<element name="equation" type="tns:math" minOccurs="0"
+										maxOccurs="unbounded" />
+								</choice>
+								<attribute ref="tns:label" use="optional" />
+							</extension>
+						</complexContent>
+					</complexType>
+				</element>
+
+			</sequence>
+			<attribute ref="tns:label" use="optional" />
+		</complexType>
+	</element>
+
+
+	<element name="template">
+		<complexType mixed="true">
+			<complexContent>
+				<extension base="tns:complexText">
+					<choice>
+						<element ref="tns:section" minOccurs="0" maxOccurs="unbounded" />
+					</choice>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+</schema>
