@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.optimizationBenchmarking.utils.MemoryUtils;
 import org.optimizationBenchmarking.utils.document.impl.abstr.DocumentConfiguration;
 import org.optimizationBenchmarking.utils.document.spec.IDocument;
 import org.optimizationBenchmarking.utils.document.spec.IDocumentDriver;
@@ -76,8 +75,6 @@ public abstract class DocumentConfigurationTest
     } finally {
       files = null;
     }
-
-    MemoryUtils.fullGC();
   }
 
   /** {@inheritDoc} */
