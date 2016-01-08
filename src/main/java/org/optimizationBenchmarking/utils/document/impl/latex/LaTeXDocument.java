@@ -1017,6 +1017,7 @@ public final class LaTeXDocument extends Document {
         logger.finer("Compilation for document " + this + //$NON-NLS-1$
             " not requested.");//$NON-NLS-1$
       }
+      return;
     }
 
     try {

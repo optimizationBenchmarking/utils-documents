@@ -1,6 +1,7 @@
 package test.junit.org.optimizationBenchmarking.utils.document;
 
 import java.nio.file.Path;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Assert;
@@ -39,8 +40,9 @@ public abstract class DocumentConfigurationTest
       final DocumentConfiguration type, final Path basePath,
       final String name, final IFileProducerListener listener,
       final Logger logger) {
-
     final IDocumentBuilder builder;
+    final String dontCompileLaTeX;
+    Logger useLogger;
 
     builder = this.getInstance().createDocumentBuilder();
     builder.setBasePath(basePath);
@@ -52,7 +54,18 @@ public abstract class DocumentConfigurationTest
       builder.setLogger(logger);
     }
     if (builder instanceof LaTeXDocumentBuilder) {
-      if (System.getProperty("dontCompileLaTeX") != null) { //$NON-NLS-1$
+      dontCompileLaTeX = System.getProperty("dontCompileLaTeX");//$NON-NLS-1$
+      if (dontCompileLaTeX != null) {
+        if (logger != null) {
+          useLogger = logger;
+        } else {
+          useLogger = Logger.getGlobal();
+        }
+        if ((useLogger != null) && (useLogger.isLoggable(Level.WARNING))) {
+          useLogger.warning(((//
+          "Compilation of LaTeX document has been switched off with command line option dontCompileLaTeX='" //$NON-NLS-1$ "
+              + dontCompileLaTeX) + '\'') + '.');
+        }
         ((LaTeXDocumentBuilder) builder).setCompile(false);
       }
     }
