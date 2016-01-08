@@ -63,8 +63,8 @@ public abstract class DocumentConfigurationTest
         }
         if ((useLogger != null) && (useLogger.isLoggable(Level.WARNING))) {
           useLogger.warning(((//
-          "Compilation of LaTeX document has been switched off with command line option dontCompileLaTeX='" //$NON-NLS-1$ "
-              + dontCompileLaTeX) + '\'') + '.');
+          "Compilation of LaTeX document has been switched off via System.getProperty(\"dontCompileLaTeX\")=\"" //$NON-NLS-1$ "
+              + dontCompileLaTeX) + '"') + '.');
         }
         ((LaTeXDocumentBuilder) builder).setCompile(false);
       }
