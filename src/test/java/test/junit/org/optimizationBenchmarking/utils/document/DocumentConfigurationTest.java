@@ -7,7 +7,9 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.optimizationBenchmarking.utils.document.impl.abstr.DocumentConfiguration;
+import org.optimizationBenchmarking.utils.document.impl.latex.LaTeXDocumentBuilder;
 import org.optimizationBenchmarking.utils.document.spec.IDocument;
+import org.optimizationBenchmarking.utils.document.spec.IDocumentBuilder;
 import org.optimizationBenchmarking.utils.document.spec.IDocumentDriver;
 import org.optimizationBenchmarking.utils.io.paths.TempDir;
 import org.optimizationBenchmarking.utils.tools.spec.IFileProducerListener;
@@ -37,8 +39,25 @@ public abstract class DocumentConfigurationTest
       final DocumentConfiguration type, final Path basePath,
       final String name, final IFileProducerListener listener,
       final Logger logger) {
-    return this.getInstance().createDocument(basePath, name, listener,
-        logger);
+
+    final IDocumentBuilder builder;
+
+    builder = this.getInstance().createDocumentBuilder();
+    builder.setBasePath(basePath);
+    builder.setMainDocumentNameSuggestion(name);
+    if (listener != null) {
+      builder.setFileProducerListener(listener);
+    }
+    if (logger != null) {
+      builder.setLogger(logger);
+    }
+    if (builder instanceof LaTeXDocumentBuilder) {
+      if (System.getProperty("dontCompileLaTeX") != null) { //$NON-NLS-1$
+        ((LaTeXDocumentBuilder) builder).setCompile(false);
+      }
+    }
+
+    return builder.create();
   }
 
   /** {@inheritDoc} */

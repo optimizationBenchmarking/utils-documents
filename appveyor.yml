@@ -30,7 +30,7 @@ configuration:
   - Release
     
 build_script:
-  - ant
+  - ant -DpassToMaven="dontCompileLaTeX=true"
   
 test_script:
   - echo "Nothing."
