@@ -320,6 +320,12 @@ public final class ExportDriver extends DocumentDriver {
 
   /** {@inheritDoc} */
   @Override
+  protected final _ExportMathSqr createMathSqr(final BasicMath owner) {
+    return new _ExportMathSqr(owner);
+  }
+
+  /** {@inheritDoc} */
+  @Override
   protected final _ExportMathSqrt createMathSqrt(final BasicMath owner) {
     return new _ExportMathSqrt(owner);
   }
