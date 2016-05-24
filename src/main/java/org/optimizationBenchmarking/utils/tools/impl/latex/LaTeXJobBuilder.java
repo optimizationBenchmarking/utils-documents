@@ -215,16 +215,6 @@ public class LaTeXJobBuilder
     return this;
   }
 
-  /** {@inheritDoc} */
-  @Override
-  protected synchronized final void validate() {
-    if (this.m_main == null) {
-      throw new IllegalArgumentException(//
-          "Main LaTeX file must be specified.");//$NON-NLS-1$
-    }
-    super.validate();
-  }
-
   /**
    * Build the main job and make it ready for execution.
    *
@@ -233,9 +223,14 @@ public class LaTeXJobBuilder
   @Override
   public synchronized final LaTeXJob create() {
     final _LaTeXToolChainComponent[][] chain;
+    final Path main;
     HashSet<IFileType> types;
 
-    this.validate();
+    main = this.m_main;
+    if (main == null) {
+      throw new IllegalArgumentException(//
+          "Main LaTeX file must be specified.");//$NON-NLS-1$
+    }
     this.__checkState();
 
     types = this.m_types;
@@ -245,8 +240,8 @@ public class LaTeXJobBuilder
     types = null;
 
     if (chain != null) {
-      return new _LaTeXMainJob(this.m_main, chain[0], chain[1],
-          this.m_listener, this.getLogger());
+      return new _LaTeXMainJob(main, chain[0], chain[1], this.m_listener,
+          this.getLogger());
     }
     return new _NoSuitableToolChainFound(this.m_listener,
         this.getLogger());

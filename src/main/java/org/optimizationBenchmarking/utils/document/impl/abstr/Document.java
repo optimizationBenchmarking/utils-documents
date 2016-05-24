@@ -39,6 +39,7 @@ import org.optimizationBenchmarking.utils.text.ETextCase;
 import org.optimizationBenchmarking.utils.text.TextUtils;
 import org.optimizationBenchmarking.utils.text.numbers.AlphabeticNumberAppender;
 import org.optimizationBenchmarking.utils.text.textOutput.MemoryTextOutput;
+import org.optimizationBenchmarking.utils.tools.impl.abstr.DocumentProducerJobBuilder;
 import org.optimizationBenchmarking.utils.tools.impl.abstr.FileCollector;
 import org.optimizationBenchmarking.utils.tools.impl.abstr.FileProducerSupport;
 import org.optimizationBenchmarking.utils.tools.spec.IFileProducerListener;
@@ -166,6 +167,10 @@ public class Document extends DocumentElement implements IDocument {
 
     DocumentConfiguration._checkChartDriver(//
         this.m_chartDriver = builder.getChartDriver());
+    DocumentConfiguration._checkGraphicDriverCompliance(
+        this.m_graphicConfig.getGraphicDriver(), this.m_driver);
+    DocumentConfiguration._checkChartDriverCompliance(this.m_chartDriver,
+        this.m_driver);
 
     this.m_styles = builder.createStyles();
     if (this.m_styles == null) {
@@ -205,10 +210,12 @@ public class Document extends DocumentElement implements IDocument {
    */
   protected Document(final DocumentDriver driver,
       final DocumentBuilder builder) {
-    this(driver,
-        PathUtils.createPathInside(builder.getBasePath(),
-            PathUtils.makeFileName(builder.getMainDocumentNameSuggestion(),
-                driver.getFileType().getDefaultSuffix())),
+    this(driver, PathUtils.createPathInside(//
+        DocumentProducerJobBuilder.checkBasePath(builder.getBasePath()), //
+        PathUtils.makeFileName(//
+            DocumentProducerJobBuilder.checkMainDocumentNameSuggestion(//
+                builder.getMainDocumentNameSuggestion()),
+            driver.getFileType().getDefaultSuffix())),
         builder);
   }
 

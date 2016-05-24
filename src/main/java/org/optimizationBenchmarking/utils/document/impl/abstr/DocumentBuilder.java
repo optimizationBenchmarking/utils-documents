@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import org.optimizationBenchmarking.utils.chart.spec.IChartDriver;
 import org.optimizationBenchmarking.utils.config.Configuration;
 import org.optimizationBenchmarking.utils.document.spec.IDocumentBuilder;
-import org.optimizationBenchmarking.utils.document.spec.IDocumentDriver;
 import org.optimizationBenchmarking.utils.graphics.EColorModel;
 import org.optimizationBenchmarking.utils.graphics.graphic.impl.abstr.GraphicConfiguration;
 import org.optimizationBenchmarking.utils.graphics.graphic.spec.IGraphicDriver;
@@ -175,8 +174,6 @@ public abstract class DocumentBuilder
   public final Document create() {
     final Logger logger;
 
-    this.validate();
-
     if (((logger = this.getLogger()) != null)
         && (logger.isLoggable(Level.FINE))) {
       logger.fine(//
@@ -186,23 +183,6 @@ public abstract class DocumentBuilder
               this.getGraphicDriver());
     }
     return this.doCreateDocument();
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  protected void validate() {
-    final IDocumentDriver documents;
-
-    super.validate();
-
-    DocumentConfiguration._checkDocumentDriver(
-        documents = this.m_builder.getDocumentDriver());
-    DocumentConfiguration
-        ._checkChartDriver(this.m_builder.getChartDriver());
-    DocumentConfiguration._checkGraphicDriverCompliance(
-        this.m_builder.getGraphicDriver(), documents);
-    DocumentConfiguration._checkChartDriverCompliance(
-        this.m_builder.getChartDriver(), documents);
   }
 
   /** {@inheritDoc} */
