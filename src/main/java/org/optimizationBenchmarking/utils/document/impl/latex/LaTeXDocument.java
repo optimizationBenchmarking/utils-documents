@@ -160,6 +160,9 @@ public final class LaTeXDocument extends Document {
   /** is there a PGF figure in the document? */
   private boolean m_hasPGFFigure;
 
+  /** the total number of floats detected */
+  private int m_totalFloats;
+
   /**
    * Create a document.
    *
@@ -607,11 +610,13 @@ public final class LaTeXDocument extends Document {
     } else {
       this.m_hasFigurePlain = true;
     }
+    ++this.m_totalFloats;
   }
 
   /** register that there is a table in the document */
   final void _registerTable() {
     this.m_hasTable = true;
+    ++this.m_totalFloats;
   }
 
   /** register that we need the amssymb package */
@@ -861,7 +866,6 @@ public final class LaTeXDocument extends Document {
               this._requireResources(LaTeXDocument.class,
                   new String[] { "cuted.sty" }, //$NON-NLS-1$
                   "This is file `cuted.sty', generated with cuted.dtx (with options: `package').\n IMPORTANT NOTICE: For the copyright see the source file.\n Any modified versions of this file must be renamed with new filenames distinct from cuted.sty.\n For distribution of the original source see the terms for copying and modification in the file cuted.dtx.\n This generated file may be distributed as long as the original source files, as listed above, are part of the same distribution. (The sources need not necessarily be in the same archive or directory.) Copyright (C) 1997-2012 by Sigitas Tolu\\v{s}is <sigitas@vtex.lt> VTeX Ltd., Akademijos 4, Vilnius, Lithuania http://www.vtex.lt/tex/download/macros/.\n This work may be distributed and/or modified under the conditions of the LaTeX Project Public License, either version 1.3 of this license or (at your option) any later version. The latest version of this license is in http://www.latex-project.org/lppl.txt and version 1.3 or later is part of all distributions of LaTeX version 2005/12/01 or later.");//$NON-NLS-1$
-
             }
           }
 
@@ -909,6 +913,31 @@ public final class LaTeXDocument extends Document {
             LaTeXDriver._commentLine("http://www.ctan.org/pkg/fixltx2e", //$NON-NLS-1$
                 out);
             LaTeXDocument._requirePackage(out, "fixltx2e", null); //$NON-NLS-1$
+          }
+
+          if (this.m_totalFloats > 18) {
+            LaTeXDriver._commentLine("In total, there are " //$NON-NLS-1$
+                + this.m_totalFloats
+                + " floating objects (figures and tables, figure series not counted) in this document.", //$NON-NLS-1$
+                out);
+            LaTeXDriver._commentLine("LaTeX can savely deal with 18.", //$NON-NLS-1$
+                out);
+            LaTeXDriver._commentLine(
+                "If more occur closely to each other and cannot be placed efficiently, LaTeX may say:", //$NON-NLS-1$
+                out);
+            LaTeXDriver._commentLine(
+                "  \"! LaTeX Error: Too many unprocessed floats.\"", //$NON-NLS-1$
+                out);
+            LaTeXDriver._commentLine(
+                "We use package 'morefloats' to deal with this issue.", //$NON-NLS-1$
+                out);
+            LaTeXDriver._commentLine("http://ctan.org/pkg/morefloats", //$NON-NLS-1$
+                out);
+
+            this.__loadPackageAndRequire(out, "morefloats.sty", //$NON-NLS-1$
+                new String[] { "maxfloats=" + this.m_totalFloats }, //$NON-NLS-1$
+                "Copyright (C) 2010-2015 by H.-Martin M\u00FCnch <Martin dot Muench at Uni-Bonn dot de> Portions of code copyrighted by other people as marked. The usual disclaimer applies: If it doesn't work right that's your problem. (Nevertheless, send an e-mail to the maintainer when you find an error in this package.) This work may be distributed and/or modified under the conditions of the LaTeX Project Public License, either version 1.3c of this license or (at your option) any later version. This version of this license is in http://www.latex-project.org/lppl/lppl-1-3c.txt and the latest version of this license is in http://www.latex-project.org/lppl.txt and version 1.3c or later is part of all distributions of LaTeX version 2005/12/01 or later. This work has the LPPL maintenance status \"maintained\". The Current Maintainer of this work is H.-Martin Muench."//$NON-NLS-1$
+            );
           }
 
           if (this.m_hasUnderlined) {

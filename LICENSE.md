@@ -212,6 +212,16 @@ The licenses used for some of these elements are given in the folder "[licenses]
       + [http://ctan.org/pkg/cuted](http://ctan.org/pkg/cuted)
       + [http://www.vtex.lt/tex/download/macros/cuted.sty](http://www.vtex.lt/tex/download/macros/cuted.sty)
 
+* LaTeX Package "morefloats"
+   - License: [LaTeX Project Public License](http://www.latex-project.org/lppl-1.3.txt), version 1.3c (see file "[meta/licenses/lppl-1.3.txt](http://github.com/optimizationBenchmarking/utils-documents/tree/master/meta/licenses/lppl-1.3.txt)")
+   - Copyright: Copyright (C) 2010-2015 by H.-Martin Münch <Martin dot Muench at Uni-Bonn dot de>
+   - Original Author: Don Hosek, Quixote
+   - Current Maintainer: H.-Martin Münch
+   - File: [morefloats.sty](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/morefloats.sty)
+   - Version: 2015/07/22 v1.0h
+   - Location in Project: [src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/)
+   - Status: freely available in the internet
+   - Sources: [http://ctan.org/pkg/morefloats](http://ctan.org/pkg/morefloats)
 
 ### Referenced Libraries
 
