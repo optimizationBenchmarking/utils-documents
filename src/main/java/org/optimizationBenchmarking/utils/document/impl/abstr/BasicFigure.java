@@ -109,8 +109,11 @@ public abstract class BasicFigure extends ComplexObject
 
     String rpath;
 
-    rpath = PathUtils.sanitizePathComponent(//
-        ((path == null) ? this.m_globalID : path));
+    if (path == null) {
+      rpath = PathUtils.sanitizePathComponent(this.m_globalID, false);
+    } else {
+      rpath = PathUtils.sanitizePathComponent(path, true);
+    }
     if (owner instanceof SectionBody) {
       this.m_folder = PathUtils.normalize(
           this.m_doc.m_basePath.resolve(BasicFigure.GRAPHICS_OFFSET));

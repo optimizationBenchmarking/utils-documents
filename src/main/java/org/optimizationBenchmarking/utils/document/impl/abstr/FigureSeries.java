@@ -70,16 +70,24 @@ public class FigureSeries extends ComplexObject implements IFigureSeries {
       final EFigureSize size, final String path, final int index) {
     super(owner, useLabel, index);
 
+    String suggestion;
+
     if (size == null) {
       throw new IllegalArgumentException(//
           "Figure series size must not be null."); //$NON-NLS-1$
     }
 
     this.m_size = size;
+
+    if (path == null) {
+      suggestion = PathUtils.sanitizePathComponent(this.m_globalID, false);
+    } else {
+      suggestion = PathUtils.sanitizePathComponent(path, true);
+    }
+
     this.m_folder = PathUtils.normalize(
         this.m_doc.m_basePath.resolve(BasicFigure.GRAPHICS_OFFSET).resolve(//
-            PathUtils.sanitizePathComponent(//
-                (path == null) ? this.m_globalID : path)));
+            suggestion));
     this.m_figuresPerRow = Math.max(1,
         this.getDocument().getFiguresPerRow(size));
   }
