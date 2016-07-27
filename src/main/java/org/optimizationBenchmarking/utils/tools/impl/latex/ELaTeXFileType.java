@@ -393,7 +393,7 @@ public enum ELaTeXFileType implements IFileType {
 
   /** A set view of all the instances */
   public static final ArraySetView<ELaTeXFileType> INSTANCES = //
-  new ArraySetView<>(ELaTeXFileType.values());
+  new ArraySetView<>(ELaTeXFileType.values(), false);
 
   /** should we delete the file afterwards? */
   private final boolean m_deleteAfter;

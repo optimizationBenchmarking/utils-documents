@@ -34,7 +34,7 @@ public class ReferenceRun extends ArrayListView<Label>
    */
   public ReferenceRun(final String type, final ESequenceMode seq,
       final Label[] data) {
-    super(data);
+    super(data, false);
     this.m_type = type;
     this.m_seq = seq;
   }

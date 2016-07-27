@@ -333,7 +333,7 @@ public class LaTeX extends FileProducerTool
       if (size > 0) {
         formats = list.toArray(new EGraphicFormat[size]);
         Arrays.sort(formats);
-        ALL = new ArraySetView<>(formats);
+        ALL = new ArraySetView<>(formats, false);
       } else {
         ALL = ((ArraySetView) (ArraySetView.EMPTY_SET_VIEW));
       }

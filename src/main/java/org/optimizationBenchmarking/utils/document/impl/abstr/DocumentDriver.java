@@ -1149,8 +1149,8 @@ public abstract class DocumentDriver extends DocumentProducerTool
       references[i] = this.createCitationItem(bib.get(i), citationMode);
     }
 
-    sequenceMode.appendSequence(textCase, new ArrayListView<>(references),
-        true, complexText);
+    sequenceMode.appendSequence(textCase,
+        new ArrayListView<>(references, false), true, complexText);
   }
 
   /**
@@ -1192,7 +1192,7 @@ public abstract class DocumentDriver extends DocumentProducerTool
       final ComplexText complexText, final ITextOutput raw) {
     if (runs.length > 0) {
       ESequenceMode.AND.appendNestedSequence(textCase,
-          new ArrayListView<>(runs), true, 1, complexText);
+          new ArrayListView<>(runs, false), true, 1, complexText);
     } else {
       runs[0].toSequence(true, true, textCase, complexText);
     }

@@ -97,7 +97,7 @@ public class LaTeXDocumentClass extends PageDimension {
     if ((params == null) || (params.length <= 0)) {
       this.m_classParams = ((ArrayListView) (ArraySetView.EMPTY_SET_VIEW));
     } else {
-      this.m_classParams = new ArrayListView(params.clone());
+      this.m_classParams = new ArrayListView(params.clone(), false);
     }
 
     if (fonts == null) {

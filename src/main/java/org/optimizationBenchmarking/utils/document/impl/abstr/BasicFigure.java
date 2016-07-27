@@ -293,7 +293,7 @@ public abstract class BasicFigure extends ComplexObject
         } else {
           list2 = new Map.Entry[i];
           System.arraycopy(list, 0, list2, 0, i);
-          this.m_figureFiles = new ArrayListView(list2);
+          this.m_figureFiles = new ArrayListView(list2, false);
         }
       }
     }

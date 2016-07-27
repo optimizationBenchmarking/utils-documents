@@ -316,8 +316,8 @@ final class _XHTML10Bibliography {
     for (; (--i) >= 0;) {
       h[i] = new _XHTML10BibAuthorHolder(start, authors.get(i), raw);
     }
-    ESequenceMode.AND.appendSequence(textCase, new ArrayListView<>(h),
-        true, ct);
+    ESequenceMode.AND.appendSequence(textCase,
+        new ArrayListView<>(h, false), true, ct);
   }
 
   /**

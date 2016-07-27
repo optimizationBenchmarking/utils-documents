@@ -204,9 +204,10 @@ final class _LaTeXMainJob extends LaTeXJob {
     if (path != null) {
       if (Files.exists(path)) {
         synchronized (this.m_listener) {
-          this.m_listener.onFilesFinalized(
-              new ArraySetView(new ImmutableAssociation[] {
-                  new ImmutableAssociation(path, ELaTeXFileType.PDF) }));
+          this.m_listener.onFilesFinalized(new ArraySetView(
+              new ImmutableAssociation[] {
+                  new ImmutableAssociation(path, ELaTeXFileType.PDF) },
+              false));
         }
         return;
       }

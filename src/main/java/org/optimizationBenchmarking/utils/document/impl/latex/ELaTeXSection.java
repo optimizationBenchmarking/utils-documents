@@ -22,5 +22,5 @@ public enum ELaTeXSection {
 
   /** the instances */
   public static final ArraySetView<ELaTeXSection> INSTANCES = new ArraySetView<>(
-      ELaTeXSection.values());
+      ELaTeXSection.values(), false);
 }
