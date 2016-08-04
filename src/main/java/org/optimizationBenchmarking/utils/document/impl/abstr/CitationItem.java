@@ -141,15 +141,15 @@ public class CitationItem implements ISequenceable {
 
   /** {@inheritDoc} */
   @Override
-  public final void toSequence(final boolean isFirstInSequence,
+  public final ETextCase toSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput textOut) {
     final ComplexText o;
 
     o = ((ComplexText) textOut);
 
-    this.doSequence(isFirstInSequence, isLastInSequence, textCase, o,
-        o._raw());
+    return this.doSequence(isFirstInSequence, isLastInSequence, textCase,
+        o, o._raw());
   }
 
   /**
@@ -165,36 +165,37 @@ public class CitationItem implements ISequenceable {
    *          the complex output text
    * @param raw
    *          the raw, unencoded output
+   * @return the next text case
    */
-  protected void doSequence(final boolean isFirstInSequence,
+  protected ETextCase doSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ComplexText out, final ITextOutput raw) {
 
     final BibRecord rec;
     final ECitationMode mode;
     boolean has;
-    BibAuthors a;
-    ETextCase tc;
+    BibAuthors authors;
+    ETextCase theCase;
     String t;
 
     has = false;
     mode = this.m_mode;
     rec = this.m_record;
-    tc = textCase;
+    theCase = textCase;
 
     if (mode.printAuthors()) {
       finder: {
-        a = rec.getAuthors();
-        if ((a == null) || (a.isEmpty())) {
+        authors = rec.getAuthors();
+        if ((authors == null) || (authors.isEmpty())) {
           if (rec instanceof BibBook) {
-            a = (((BibBook) (rec)).getEditors());
-            if ((a == null) || (a.isEmpty())) {
+            authors = (((BibBook) (rec)).getEditors());
+            if ((authors == null) || (authors.isEmpty())) {
               break finder;
             }
           }
         }
-        this.renderAuthors(a, textCase, out, raw);
-        tc = tc.nextCase();
+        this.renderAuthors(authors, textCase, out, raw);
+        theCase = theCase.nextCase();
         has = true;
       }
     }
@@ -207,7 +208,7 @@ public class CitationItem implements ISequenceable {
       }
 
       this.renderYear(rec.getYear(), textCase, out, raw);
-      tc = tc.nextCase();
+      theCase = theCase.nextCase();
     }
 
     if (mode.printTitle()) {
@@ -218,7 +219,7 @@ public class CitationItem implements ISequenceable {
       t = rec.getTitle();
       if ((t != null) && (t.length() > 0)) {
         this.renderTitle(t, textCase, out, raw);
-        tc = tc.nextCase();
+        theCase = theCase.nextCase();
         has = true;
       }
     }
@@ -230,10 +231,12 @@ public class CitationItem implements ISequenceable {
         has = true;
       }
 
-      this.renderID(rec.getID(), rec.getKey(), tc, out, raw);
+      this.renderID(rec.getID(), rec.getKey(), theCase, out, raw);
     } else {
-      this.dontRenderID(rec.getID(), rec.getKey(), tc, out, raw);
+      this.dontRenderID(rec.getID(), rec.getKey(), theCase, out, raw);
     }
+
+    return theCase.nextCase();
   }
 
   /**

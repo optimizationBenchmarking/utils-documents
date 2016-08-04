@@ -95,25 +95,25 @@ public class Label extends Textable implements ILabel, ISequenceable {
    *          the text output
    * @param raw
    *          the underlying raw text destination
+   * @return the next case
    */
-  protected void doToSequence(final boolean isFirstInSequence,
+  protected ETextCase doToSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput text, final ITextOutput raw) {
-    //
+    return textCase;
   }
 
   /** {@inheritDoc} */
   @Override
-  public void toSequence(final boolean isFirstInSequence,
+  public ETextCase toSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput textOut) {
     if (textOut instanceof ComplexText) {
-      this.doToSequence(isFirstInSequence, isLastInSequence, textCase,
-          textOut, ((ComplexText) textOut)._raw());
-    } else {
-      this.doToSequence(isFirstInSequence, isLastInSequence, textCase,
-          textOut, textOut);
+      return this.doToSequence(isFirstInSequence, isLastInSequence,
+          textCase, textOut, ((ComplexText) textOut)._raw());
     }
+    return this.doToSequence(isFirstInSequence, isLastInSequence, textCase,
+        textOut, textOut);
   }
 
   /** {@inheritDoc} */

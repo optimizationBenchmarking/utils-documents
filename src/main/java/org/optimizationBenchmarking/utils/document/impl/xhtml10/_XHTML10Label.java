@@ -30,7 +30,7 @@ final class _XHTML10Label extends Label {
 
   /** {@inheritDoc} */
   @Override
-  protected void doToSequence(final boolean isFirstInSequence,
+  protected ETextCase doToSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput text, final ITextOutput raw) {
     final int l;
@@ -62,5 +62,6 @@ final class _XHTML10Label extends Label {
     }
 
     raw.append(XHTML10Driver.A_REF_END);
+    return textCase.nextCase();
   }
 }

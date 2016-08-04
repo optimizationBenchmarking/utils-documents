@@ -41,7 +41,7 @@ final class _XHTML10BibAuthorHolder implements ISequenceable {
 
   /** {@inheritDoc} */
   @Override
-  public final void toSequence(final boolean isFirstInSequence,
+  public final ETextCase toSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput textOut) {
     final String s;
@@ -63,5 +63,6 @@ final class _XHTML10BibAuthorHolder implements ISequenceable {
       raw.append(']');
     }
     raw.append(XHTML10Driver.SPAN_END);
+    return textCase.nextCase();
   }
 }

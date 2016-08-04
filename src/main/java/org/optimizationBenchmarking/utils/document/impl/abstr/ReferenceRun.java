@@ -59,14 +59,10 @@ public class ReferenceRun extends ArrayListView<Label>
 
   /** {@inheritDoc} */
   @Override
-  public void toSequence(final boolean isFirstInSequence,
+  public ETextCase toSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput textOut) {
-    // textCase.appendWord(this.m_type, textOut);
-    // if (this.size() > 1) {
-    // textOut.append('s');
-    // }
-    // textOut.append(' ');
-    this.m_seq.appendSequence(textCase.nextCase(), this, true, textOut);
+    return this.m_seq.appendSequence(textCase.nextCase(), this, true,
+        textOut);
   }
 }

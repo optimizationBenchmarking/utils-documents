@@ -29,7 +29,7 @@ final class _LaTeXLabel extends Label {
 
   /** {@inheritDoc} */
   @Override
-  protected void doToSequence(final boolean isFirstInSequence,
+  protected ETextCase doToSequence(final boolean isFirstInSequence,
       final boolean isLastInSequence, final ETextCase textCase,
       final ITextOutput text, final ITextOutput raw) {
     String rt;
@@ -47,5 +47,6 @@ final class _LaTeXLabel extends Label {
     raw.append(this.getLabelMark());
     raw.append('}');
     raw.append('}');
+    return textCase.nextCase();
   }
 }
