@@ -150,7 +150,7 @@ final class _LaTeXCodeBody extends CodeBody {
   @Override
   public synchronized final void appendLineBreak() {
     this.assertNoChildren();
-    this.m_codeOut.appendLineBreak();
+    this.getTextOutput().appendLineBreak();
   }
 
   /** {@inheritDoc} */
@@ -166,5 +166,4 @@ final class _LaTeXCodeBody extends CodeBody {
     this.m_codeOut.flush();
     super.flush();
   }
-
 }
