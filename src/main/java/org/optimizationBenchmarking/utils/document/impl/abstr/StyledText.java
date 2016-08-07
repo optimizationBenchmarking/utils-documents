@@ -314,7 +314,7 @@ public class StyledText extends ComplexText {
     o.append('(');
     style.appendDescription(ETextCase.IN_SENTENCE, o, false);
     o.append(") to a text since it is a "); //$NON-NLS-1$
-    o.append(TextUtils.className(style.getClass()));
+    o.append(TextUtils.className(style));
     o.append(
         " but only font and color styles (except white) are allowed."); //$NON-NLS-1$
 

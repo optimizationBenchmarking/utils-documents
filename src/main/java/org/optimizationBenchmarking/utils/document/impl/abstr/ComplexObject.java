@@ -196,7 +196,7 @@ public abstract class ComplexObject extends DocumentPart
         }
       }
 
-      s = TextUtils.className(this.getClass());
+      s = TextUtils.className(this);
       if (s != null) {
         i = s.lastIndexOf('.');
         if (i > 0) {

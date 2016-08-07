@@ -1,6 +1,7 @@
 package org.optimizationBenchmarking.utils.document.impl.abstr;
 
 import org.optimizationBenchmarking.utils.hierarchy.HierarchicalText;
+import org.optimizationBenchmarking.utils.text.TextUtils;
 import org.optimizationBenchmarking.utils.text.textOutput.ITextOutput;
 import org.optimizationBenchmarking.utils.text.textOutput.MemoryTextOutput;
 
@@ -61,7 +62,7 @@ public abstract class MathFunction extends BasicMath {
     final int done;
 
     if (this.getCurrentSize() != (done = this.m_done)) {
-      throw new IllegalStateException(this.getClass().getSimpleName() + //
+      throw new IllegalStateException(TextUtils.className(this) + //
           " has least " + this.getCurrentSize() + //$NON-NLS-1$
           " arguments, but only " + done + //$NON-NLS-1$
           " have completed their work."); //$NON-NLS-1$

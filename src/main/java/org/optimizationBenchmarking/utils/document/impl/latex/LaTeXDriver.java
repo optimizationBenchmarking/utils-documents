@@ -744,7 +744,7 @@ public final class LaTeXDriver extends DocumentDriver {
    */
   final ITextOutput _encodeCode(final ITextOutput raw,
       final ITextOutput encoded) {
-    return raw;
+    return _LaTeXCodeCharTransformer.INSTANCE.transform(raw);
   }
 
   /** {@inheritDoc} */

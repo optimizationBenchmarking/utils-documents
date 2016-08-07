@@ -688,7 +688,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
   }
 
   /** process the cached text */
-  @SuppressWarnings({ "resource", "null" })
+  @SuppressWarnings("resource")
   private final void __processText() {
     final MemoryTextOutput chars;
     final ITextOutput textOut;
@@ -723,7 +723,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
           throw new IllegalArgumentException(//
               "The labels you reference must be instances of ILabel, but property'"//$NON-NLS-1$
                   + string + "' points to an instance of " //$NON-NLS-1$
-                  + TextUtils.className(object.getClass()));
+                  + TextUtils.className(object));
         }
         this.m_labels.add((ILabel) object);
         return;
@@ -747,7 +747,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
             throw new IllegalArgumentException(//
                 ("Error while parsing String '" + //$NON-NLS-1$
                     string + "' with parser of type " + //$NON-NLS-1$
-                    TextUtils.className(parser.getClass())),
+                    TextUtils.className(parser)),
                 e);
           }
 
@@ -763,7 +763,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
       if ((len > 1) || (chars.charAt(0) != ' ')) {
         throw new IllegalStateException("Text '" + chars + //$NON-NLS-1$
             "' was found, but the current element is of type " + //$NON-NLS-1$
-            TextUtils.className(element.getClass()) + //
+            TextUtils.className(element) + //
             ", i.e., is not an element to which we can write text.");//$NON-NLS-1$
       }
       chars.clear();
@@ -772,7 +772,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
     if (parser != null) {
       throw new IllegalStateException(//
           "Cannot pass an empty string to a parser, but parser of type " //$NON-NLS-1$
-              + TextUtils.className(parser.getClass()) + " set.");//$NON-NLS-1$
+              + TextUtils.className(parser) + " set.");//$NON-NLS-1$
     }
   }
 
@@ -930,7 +930,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         "The current element must be an instance of " + //$NON-NLS-1$
             TextUtils.className(clazz) + //
             " but is instead an instance of "//$NON-NLS-1$
-            + TextUtils.className(element.getClass()));
+            + TextUtils.className(element));
   }
 
   /**
@@ -1099,7 +1099,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
       } else {
         throw new IllegalStateException(//
             "Only instances of IPlainText or IMath can contain braces elements, but the current element is an instance of " //$NON-NLS-1$
-                + TextUtils.className(element.getClass()));
+                + TextUtils.className(element));
       }
     }
   }
@@ -1187,7 +1187,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
       } else {
         throw new IllegalStateException(//
             "Only IMathName or IComplexText can contain superscript elements, but the current element is an instance of " //$NON-NLS-1$
-                + TextUtils.className(element.getClass()));
+                + TextUtils.className(element));
       }
     }
   }
@@ -1225,7 +1225,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
       } else {
         throw new IllegalStateException(//
             "Only IMathName or IComplexText can contain subscript elements, but the current element is an instance of " //$NON-NLS-1$
-                + TextUtils.className(element.getClass()));
+                + TextUtils.className(element));
       }
     }
   }
@@ -1307,7 +1307,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
               "The label attribute of section must point to a property which is either null or an instance of ILabel, but the value of '" //$NON-NLS-1$
                   + prop + //
                   "' is an instance of "//$NON-NLS-1$
-                  + TextUtils.className(prop.getClass()));
+                  + TextUtils.className(prop));
         }
         label = ((ILabel) (obj));
       } else {
@@ -1661,7 +1661,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
 
         throw new IllegalArgumentException(//
             "A formatter able to deal with int numbers is required, such as a NumberAppender or DecimalFormat. Null would also be ok, in which case we print the number directly. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1690,7 +1690,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         }
         throw new IllegalArgumentException(//
             "A formatter able to deal with long numbers is required, such as a NumberAppender or DecimalFormat. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1719,7 +1719,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         }
         throw new IllegalArgumentException(//
             "A formatter able to deal with double numbers is required, such as a NumberAppender or DecimalFormat. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1748,7 +1748,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         }
         throw new IllegalArgumentException(//
             "A formatter able to deal with float numbers is required, such as a NumberAppender or DecimalFormat. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1777,7 +1777,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         }
         throw new IllegalArgumentException(//
             "A formatter able to deal with short numbers is required, such as a NumberAppender or DecimalFormat. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1806,7 +1806,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
         }
         throw new IllegalArgumentException(//
             "A formatter able to deal with byte numbers is required, such as a NumberAppender or DecimalFormat. However, the formatter of type " //$NON-NLS-1$
-                + TextUtils.className(format.getClass()) + //
+                + TextUtils.className(format) + //
                 " is not suitable for this purpose.");//$NON-NLS-1$
       }
 
@@ -1838,18 +1838,18 @@ public final class DocumentXMLHandler extends DelegatingHandler {
 
       throw new IllegalArgumentException(//
           "A formatter able to deal with numbers of type " + //$NON-NLS-1$
-              TextUtils.className(object.getClass()) + //
+              TextUtils.className(object) + //
               " is required, such as a NumberAppender or DecimalFormat. Null would also be ok, in which case we print the number directly. However, the formatter of type " //$NON-NLS-1$
-              + TextUtils.className(format.getClass()) + //
+              + TextUtils.className(format) + //
               " is not suitable for this purpose.");//$NON-NLS-1$
     }
 
     if (format != null) {
       throw new IllegalArgumentException(//
           "Object of type " + //$NON-NLS-1$
-              TextUtils.className(object.getClass())//
+              TextUtils.className(object)//
               + " cannot be processed by formatter of type " + //$NON-NLS-1$
-              TextUtils.className(format.getClass()));
+              TextUtils.className(format));
     }
 
     if (object instanceof ITextable) {
@@ -1912,7 +1912,7 @@ public final class DocumentXMLHandler extends DelegatingHandler {
               "The label attribute of equation must point to a property which is either null or an instance of ILabel, but the value of '" //$NON-NLS-1$
                   + prop + //
                   "' is an instance of "//$NON-NLS-1$
-                  + TextUtils.className(prop.getClass()));
+                  + TextUtils.className(prop));
         }
         label = ((ILabel) (obj));
       } else {

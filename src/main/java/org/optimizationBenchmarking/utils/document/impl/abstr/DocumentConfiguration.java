@@ -53,7 +53,7 @@ public class DocumentConfiguration extends GraphicConfiguration {
 
     throw new UnsupportedOperationException(//
         "Cannot make instance of " + //$NON-NLS-1$
-            TextUtils.className(this.getClass()) + " immutable."); //$NON-NLS-1$
+            TextUtils.className(this) + " immutable."); //$NON-NLS-1$
   }
 
   /**

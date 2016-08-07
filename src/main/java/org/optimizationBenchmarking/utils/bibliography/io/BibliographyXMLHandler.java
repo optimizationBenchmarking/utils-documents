@@ -107,7 +107,7 @@ public final class BibliographyXMLHandler extends DelegatingHandler {
 
         throw new IllegalStateException(//
             "Can use only load bibliography records or iterables of them (such as bibliographies) from Java, but found instance of " //$NON-NLS-1$
-                + TextUtils.className(reflect.getClass()));
+                + TextUtils.className(reflect));
       }
 
       if (BibliographyXML.ELEMENT_ARTICLE.equalsIgnoreCase(localName)) {

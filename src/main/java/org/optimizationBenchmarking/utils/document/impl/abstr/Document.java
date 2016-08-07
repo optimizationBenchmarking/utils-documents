@@ -531,7 +531,7 @@ public class Document extends DocumentElement implements IDocument {
     if (s == null) {
       this.m_docName = s = (" document '" + //$NON-NLS-1$
           this.m_documentPath + "' of type " + //$NON-NLS-1$
-          TextUtils.className(this.m_driver.getClass()));
+          TextUtils.className(this.m_driver));
     }
     return s;
   }

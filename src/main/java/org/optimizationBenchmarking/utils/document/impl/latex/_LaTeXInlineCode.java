@@ -189,27 +189,32 @@ final class _LaTeXInlineCode extends InlineCode {
     final MemoryTextOutput body;
     final ITextOutput out;
     char delim;
+    int run;
 
     body = this.m_body;
 
-    findDelim: for (delim = 33; delim <= 127; delim++) {
-      switch (delim) {
-        case '[':
-        case '%':
-        case '{':
-        case '}': {
-          continue findDelim;
-        }
-        default: {
-          if (Character.isAlphabetic(delim) || //
-              Character.isWhitespace(delim)) {
+    delim = 1000;
+    outer: for (run = 2; ((--run) >= 0);) {
+      findDelim: for (delim = 33; delim <= 127; delim++) {
+        switch (delim) {
+          case '#':
+          case '[':
+          case '%':
+          case '{':
+          case '}': {
             continue findDelim;
           }
+          default: {
+            if ((run > 0) && (Character.isAlphabetic(delim) || //
+                Character.isWhitespace(delim))) {
+              continue findDelim;
+            }
+          }
         }
-      }
 
-      if (!(body.contains(delim))) {
-        break;
+        if (!(body.contains(delim))) {
+          break outer;
+        }
       }
     }
 
@@ -222,7 +227,7 @@ final class _LaTeXInlineCode extends InlineCode {
 
     out = this.getTextOutput();
     out.append(delim);
-    out.append(body);
+    ((LaTeXDriver) (this.getDriver()))._encodeCode(out, out).append(body);
     out.append(delim);
 
     super.onClose();

@@ -2,6 +2,7 @@ package org.optimizationBenchmarking.utils.document.impl.abstr;
 
 import org.optimizationBenchmarking.utils.document.spec.EMathComparison;
 import org.optimizationBenchmarking.utils.document.spec.IMath;
+import org.optimizationBenchmarking.utils.text.TextUtils;
 
 /** A mathematics output class */
 public abstract class BasicMath extends DocumentPart implements IMath {
@@ -27,7 +28,7 @@ public abstract class BasicMath extends DocumentPart implements IMath {
 
     if ((++this.m_size) > (max = this.maxArgs())) {
       throw new IllegalStateException(//
-          "An instance of " + this.getClass().getSimpleName() + //$NON-NLS-1$
+          "An instance of " + TextUtils.className(this) + //$NON-NLS-1$
               " can have at most " + max + //$NON-NLS-1$
               " arguments, but you tried to create the " + //$NON-NLS-1$
               this.m_size + "th one."); //$NON-NLS-1$
@@ -288,7 +289,7 @@ public abstract class BasicMath extends DocumentPart implements IMath {
 
     if (this.m_size < min) {
       throw new IllegalStateException(//
-          "An instance of " + this.getClass().getSimpleName() + //$NON-NLS-1$
+          "An instance of " + TextUtils.className(this) + //$NON-NLS-1$
               " must have at least " + min + //$NON-NLS-1$
               " arguments, but has only " + this.m_size); //$NON-NLS-1$
     }

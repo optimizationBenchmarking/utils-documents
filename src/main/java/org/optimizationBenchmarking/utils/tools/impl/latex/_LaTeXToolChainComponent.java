@@ -97,7 +97,7 @@ abstract class _LaTeXToolChainComponent implements ITextable {
       logger = job._getLogger();
       if ((logger != null) && (logger.isLoggable(Level.WARNING))) {
         logger.warning(
-            this.getClass().getSimpleName() + " required file of type " + //$NON-NLS-1$
+            TextUtils.className(this) + " required file of type " + //$NON-NLS-1$
                 type + " but it was specified as null for job '" + //$NON-NLS-1$
                 job._getFile(ELaTeXFileType.TEX) + '\'' + '.'
                 + ((message != null) ? message//

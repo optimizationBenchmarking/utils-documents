@@ -14,6 +14,13 @@
 \lstset{breaklines=true}%
 \lstset{columns=flexible}%
 %
+% We escape to LaTeX using '#' as delimiter. This allows us to
+% render odd characters in listings. # itself is then transformed
+% to \texthashtag if it is encountered.
+\xdef\texthashtag{{\small\ttfamily{\#}}}%
+\lstset{escapechar=\#}%
+\lstset{mathescape=false}%
+%
 \definecolor{@listings@BackgroundColor}{HTML}{DCDCFF}%
 \definecolor{@listings@ShadowColor}{HTML}{C0C0E0}%
 \definecolor{@listings@KeywordColor}{HTML}{0000E0}%
