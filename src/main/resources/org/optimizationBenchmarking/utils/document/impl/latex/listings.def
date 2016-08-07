@@ -36,7 +36,7 @@ morekeywords={%
 boolean,break,byte,case,char,%
 const,continue,default,do,double,else,false,%
 float,for,goto,if,int,label,long,null,return,%
-short,switch,to,downto,true,until,void,while},%
+short,switch,to,downto,true,until,void,while,then},%
 morecomment=[l]//,%
 morecomment=[s]{/*}{*/},%
 morestring=[b]",%
