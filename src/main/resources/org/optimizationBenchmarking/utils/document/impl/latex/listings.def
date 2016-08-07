@@ -17,7 +17,7 @@
 % We escape to LaTeX using '#' as delimiter. This allows us to
 % render odd characters in listings. # itself is then transformed
 % to \texthashtag if it is encountered.
-\xdef\texthashtag{{\small\ttfamily{\#}}}%
+\gdef\texthashtag{{\small\ttfamily{\#}}}%
 \lstset{escapechar=\#}%
 \lstset{mathescape=false}%
 %
