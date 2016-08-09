@@ -24,7 +24,7 @@ final class _XHTML10MathMin extends MathMin {
   @Override
   protected final void render(final ITextOutput out, final char[][] data,
       final int size) {
-    boolean first;
+    int index;
 
     out.append(_XHTML10InlineMath.MO_TAB);
     out.append(_XHTML10InlineMath.MO_TR);
@@ -33,17 +33,14 @@ final class _XHTML10MathMin extends MathMin {
     out.append(_XHTML10MathMin.OP);
     out.append(_XHTML10Table.TD_END);
 
-    first = true;
-    for (final char[] operand : data) {
+    for (index = 0; index < size; index++) {
       out.append(_XHTML10InlineMath.MO_TD);
-      if (first) {
-        first = false;
-      } else {
+      if (index > 0) {
         out.append(_XHTML10InlineMath.MO_TD);
         out.append(',');
         out.append(_XHTML10Table.TD_END);
       }
-      out.append(operand);
+      out.append(data[index]);
       out.append(_XHTML10Table.TD_END);
     }
 

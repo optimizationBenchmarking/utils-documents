@@ -27,14 +27,15 @@ final class _LaTeXMathMin extends MathMin {
   @Override
   protected final void render(final ITextOutput out, final char[][] data,
       final int size) {
+    int index;
     char next;
 
     out.append(_LaTeXMathMin.MIN_BEGIN);
     next = '{';
-    for (final char[] operand : data) {
+    for (index = 0; index < size; index++) {
       out.append(next);
       next = ',';
-      out.append(operand);
+      out.append(data[index]);
     }
     out.append(_LaTeXMathMin.MIN_END);
   }
