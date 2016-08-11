@@ -13,6 +13,7 @@
 \@equation@availableWidth=-\@equation@availableWidth%
 \advance\@equation@availableWidth by \linewidth%
 \advance\@equation@availableWidth by -1.5em%
+\advance\@equation@availableWidth by -2pt%
 \ifdim\@equation@contentWidth>\@equation@availableWidth%
 {\resizebox{\@equation@availableWidth}{!}{\mbox{\ensuremath{\displaystyle{#1}}}}}%
 \else%
