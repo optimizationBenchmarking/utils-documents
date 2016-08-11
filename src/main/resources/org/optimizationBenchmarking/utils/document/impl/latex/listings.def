@@ -29,7 +29,6 @@
 \lstset{backgroundcolor=\color{@listings@BackgroundColor}}%
 \lstset{rulesepcolor=\color{@listings@ShadowColor}}%
 \lstset{keywordstyle=\color{@listings@KeywordColor}\bfseries}%
-\lstset{frame=shadowbox}%
 %
 \lstdefinelanguage{listingsBasicLanguage}{%
 morekeywords={%
