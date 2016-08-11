@@ -164,6 +164,12 @@ public final class LaTeXDocument extends Document {
   private int m_totalFloats;
 
   /**
+   * {@code true} if we have at least one equation in the document,
+   * {@code false} otherwise
+   */
+  private boolean m_hasEquation;
+
+  /**
    * Create a document.
    *
    * @param builder
@@ -619,6 +625,11 @@ public final class LaTeXDocument extends Document {
     ++this.m_totalFloats;
   }
 
+  /** register that there is an equation in the document */
+  final void _registerEquation() {
+    this.m_hasEquation = true;
+  }
+
   /** register that we need the amssymb package */
   final void _registerNeedsAMSSymb() {
     this.m_needsAMSSymb = true;
@@ -831,9 +842,9 @@ public final class LaTeXDocument extends Document {
           }
 
           // do we have a figure?
-          if (this.m_hasFigure) {
+          if (this.m_hasFigure || this.m_hasEquation) {
             LaTeXDriver._commentLine(
-                "We need graphicx to render the figures.", //$NON-NLS-1$
+                "We need graphicx to render the figures and resizing equations.", //$NON-NLS-1$
                 out);
             LaTeXDriver._commentLine("http://www.ctan.org/pkg/graphicx", //$NON-NLS-1$
                 out);
@@ -884,6 +895,10 @@ public final class LaTeXDocument extends Document {
 
           if (this.m_hasCode) {
             this.__include("listings.def", out);//$NON-NLS-1$
+          }
+
+          if (this.m_hasEquation) {
+            this.__include("equations.def", out);//$NON-NLS-1$
           }
 
           b = (this.m_hasFigurePlain && this.m_hasFigureStar && //

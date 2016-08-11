@@ -9,10 +9,12 @@ final class _LaTeXEquation extends Equation {
 
   /** begin equation */
   private static final char[] EQUATION_BEGIN = { '\\', 'b', 'e', 'g', 'i',
-      'n', '{', 'e', 'q', 'u', 'a', 't', 'i', 'o', 'n', '}' };
+      'n', '{', 'e', 'q', 'u', 'a', 't', 'i', 'o', 'n', '}', '\\', 'e',
+      'q', 'u', 'a', 't', 'i', 'o', 'n', 'C', 'o', 'n', 't', 'e', 'n', 't',
+      's', '{', };
   /** end equation */
-  private static final char[] EQUATION_END = { '\\', 'e', 'n', 'd', '{',
-      'e', 'q', 'u', 'a', 't', 'i', 'o', 'n', '}' };
+  private static final char[] EQUATION_END = { '}', '\\', 'e', 'n', 'd',
+      '{', 'e', 'q', 'u', 'a', 't', 'i', 'o', 'n', '}' };
 
   /**
    * Create a new equation
@@ -42,6 +44,7 @@ final class _LaTeXEquation extends Equation {
     LaTeXDriver._endLine(out);
     out.append(_LaTeXEquation.EQUATION_BEGIN);
     LaTeXDriver._endLine(out);
+    ((LaTeXDocument) (this.getDocument()))._registerEquation();
   }
 
   /** {@inheritDoc} */

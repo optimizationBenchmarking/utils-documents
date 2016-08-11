@@ -1,0 +1,22 @@
+%
+% Sometimes, equations may be too wide for a column or page.
+% In this case, we will scale its contents to fit.
+% This requires the graphicx package.
+%
+\newdimen\@equation@contentWidth%   the width of the equation's content
+\newdimen\@equation@availableWidth% the approximated available width
+%
+% Print the contents of the quation, resized if necessary
+\gdef\equationContents#1{%
+\settowidth{\@equation@contentWidth}{\mbox{\ensuremath{\displaystyle{#1}}}}%
+\settowidth{\@equation@availableWidth}{\mbox{(\theequation)}}%
+\@equation@availableWidth=-\@equation@availableWidth%
+\advance\@equation@availableWidth by \linewidth%
+\advance\@equation@availableWidth by -1.5em%
+\ifdim\@equation@contentWidth>\@equation@availableWidth%
+{\resizebox{\@equation@availableWidth}{!}{\mbox{\ensuremath{\displaystyle{#1}}}}}%
+\else%
+#1%
+\fi%
+}%
+%
