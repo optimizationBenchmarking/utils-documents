@@ -259,6 +259,18 @@ public final class ExportDriver extends DocumentDriver {
 
   /** {@inheritDoc} */
   @Override
+  protected final _ExportMathMax createMathMax(final BasicMath owner) {
+    return new _ExportMathMax(owner);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  protected final _ExportMathMin createMathMin(final BasicMath owner) {
+    return new _ExportMathMin(owner);
+  }
+
+  /** {@inheritDoc} */
+  @Override
   protected final _ExportMathMul createMathMul(final BasicMath owner) {
     return new _ExportMathMul(owner);
   }
