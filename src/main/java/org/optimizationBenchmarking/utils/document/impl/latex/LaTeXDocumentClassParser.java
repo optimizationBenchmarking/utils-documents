@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 
 import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.Article;
 import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.Book;
+import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.ElsevierArticle;
 import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.IEEEtran;
 import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.LLNCS;
 import org.optimizationBenchmarking.utils.document.impl.latex.documentClasses.Report;
@@ -65,6 +66,11 @@ public final class LaTeXDocumentClassParser
     if ("sig-alternate".equalsIgnoreCase(string) || //$NON-NLS-1$
         "sigalternate".equalsIgnoreCase(string)) { //$NON-NLS-1$
       return SigAlternate.getInstance();
+    }
+    if ("elsarticle".equalsIgnoreCase(string) || //$NON-NLS-1$
+        "elsevier".equalsIgnoreCase(string) || //$NON-NLS-1$
+        "elsevierarticle".equalsIgnoreCase(string)) { //$NON-NLS-1$
+      return ElsevierArticle.getInstance();
     }
 
     return super.parseString(string);

@@ -223,6 +223,28 @@ The licenses used for some of these elements are given in the folder "[licenses]
    - Status: freely available in the internet
    - Sources: [http://ctan.org/pkg/morefloats](http://ctan.org/pkg/morefloats)
 
+* LaTeX Document Class "elsarticle"
+    - License: [LaTeX Project Public License](http://www.latex-project.org/lppl/lppl-1-2.txt), either version 1.2 of this license (see file "[meta/licenses/lppl-1.2.txt](http://github.com/optimizationBenchmarking/utils-documents/tree/master/meta/licenses/lppl-1.2.txt)") or (at your option) any later version.
+    - Copyright: 2007, 2008, 2009 Elsevier Ltd
+    - Author: ?
+    - File: [elsarticle.cls](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/elsarticle.cls)
+    - Version: $Id: elsarticle.cls,v 1.20 2008-10-13 04:24:12 cvr Exp $
+    - Status: freely available in the internet
+    - Location in Project: [src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/)
+    - Sources: http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle/
+
+* LaTeX Bibliography Style "elsarticle-num"
+    - License: [LaTeX Project Public License](http://www.latex-project.org/lppl/lppl-1-2.txt), either version 1.2 of this license (see file "[meta/licenses/lppl-1.2.txt](http://github.com/optimizationBenchmarking/utils-documents/tree/master/meta/licenses/lppl-1.2.txt)") or (at your option) any later version.
+   - Copyright: 2007, 2008, 2009 Elsevier Ltd
+   - Author: ?
+   - File: [elsarticle-num.bst](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/elsarticle-num.bst)
+   - Version: Modification of BibTeX style file elsarticle-num.bst ... by urlbst, version 0.6 (marked with "% urlbst"), See <http://purl.org/nxg/dist/urlbst>, Added webpage entry type, and url and lastchecked, fields. Added eprint support. Added DOI support. Added hyperref support. Original headers follow..., This is file elsarticle-num.bst, generated with the docstrip utility. The original source files were: merlin.mbs  (with options: `,seq-no,nm-init,ed-au,dt-end,yr-par,yrp-x,jttl-rm,thtit-a,vnum-sp,volp-blk,jdt-p,pp-last,jnm-x,btit-rm,bt-rm,pub-date,pub-xpar,pre-edn,url,url-nl,edpar,blk-com,in-col,pp,ed,abr,ednx,ord,jabr,and-xcom,xand,em-x,nfss'), After docstrip generation some manual changes were made (SP)
+   - Location in Project: [src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/](http://github.com/optimizationBenchmarking/utils-documents/tree/master/src/main/resources/org/optimizationBenchmarking/utils/document/impl/latex/documentClasses/)
+   - Status: freely available in the internet
+   - Sources: http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle/
+   
+   
+
 ### Referenced Libraries
 
 *the library* _directly_ depends on a set of external libraries. These will automatically be loaded if you install the project via the [Maven POM](http://github.com/optimizationBenchmarking/utils-documents/tree/master/pom.xml) file. They are not part of the official source code. However, they may be included in "fat `jars`", i.e., the `jar` archives we create via the [Maven Shade Plugin](http://maven.apache.org/plugins/maven-shade-plugin/) and which hold a "-full" in their name. These `jar` archive are created for the user's convenience: Using them, no additional libraries need to be put into the classpath.
