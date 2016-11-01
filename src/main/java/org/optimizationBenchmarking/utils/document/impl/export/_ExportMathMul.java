@@ -22,17 +22,15 @@ final class _ExportMathMul extends MathMul {
   @Override
   protected final void render(final ITextOutput out, final char[][] data,
       final int size) {
-    boolean done;
 
-    done = false;
-    for (final char[] chrs : data) {
-      if (done) {
+    int i;
+    out.append('{');
+    for (i = 0; i < size; i++) {
+      if (i > 0) {
         out.append('*');
-      } else {
-        done = true;
       }
       out.append('(');
-      out.append(chrs);
+      out.append(data[i]);
       out.append(')');
     }
   }
